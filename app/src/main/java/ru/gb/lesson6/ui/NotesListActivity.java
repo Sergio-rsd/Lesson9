@@ -27,7 +27,6 @@ public class NotesListActivity extends AppCompatActivity implements NotesAdapter
     private RecyclerView list;
     private NotesAdapter adapter;
     private InitRepo flagRepo = new InitRepo();
-    private final boolean flagTest = true;
     public static final String RESULT = "RESULT";
     public static final String TAG = "happy";
 
@@ -37,25 +36,18 @@ public class NotesListActivity extends AppCompatActivity implements NotesAdapter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes_list);
 
-        Log.d(TAG,"Flag Repo Before " + flagRepo.isFlagInitRepo());
+//        Log.d(TAG, "Flag Repo Before " + flagRepo.isFlagInitRepo());
 
-
-//        flagRepo.setFlagInitRepo(false);
-//        Log.d(TAG,"Flag Repo After " + flagRepo.isFlagInitRepo());
         if (savedInstanceState != null && savedInstanceState.containsKey(RESULT)) {
             flagRepo = (InitRepo) savedInstanceState.getSerializable(RESULT);
-            Log.d(TAG,"Flag REPO " + flagRepo.isFlagInitRepo());
-//            flagRepo.setFlagInitRepo(true);
-/*            if (!flagRepo.isFlagInitRepo()) {
-//                fillRepo();
-                flagRepo.setFlagInitRepo(true);
-            }*/
-        }
-        if (!flagRepo.isFlagInitRepo()) {
+//            Log.d(TAG, "Flag REPO from save INSTANCE " + flagRepo.isFlagInitRepo());
+
+        } else if (!flagRepo.isFlagInitRepo()) {
             fillRepo();
             flagRepo.setFlagInitRepo(true);
         }
-        Log.d(TAG,"Flag Repo After " + flagRepo.isFlagInitRepo());
+
+//        Log.d(TAG, "Flag Repo After " + flagRepo.isFlagInitRepo());
 
         adapter = new NotesAdapter();
         adapter.setNotes(repository.getAll());
@@ -68,13 +60,12 @@ public class NotesListActivity extends AppCompatActivity implements NotesAdapter
         list.setLayoutManager(new LinearLayoutManager(this)); // Vertical
         list.setAdapter(adapter);
 
-
     }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable(RESULT,flagRepo);
+        outState.putSerializable(RESULT, flagRepo);
     }
 
     private void fillRepo() {
@@ -117,45 +108,36 @@ public class NotesListActivity extends AppCompatActivity implements NotesAdapter
                 // создать Intent
                 // TODO запустить EditNoteActivity
                 Intent intent = new Intent(this, EditNoteActivity.class);
-//                intent.putExtra(Constants.NOTE, InMemoryRepoImpl.getInstance().read());
-//                intent.putExtra(Constants.NOTE, notes.size());
-
-//                intent.putExtra(Constants.NOTE_ID, repository.getAll().size()+1);
                 flagRepo.setFlagInitRepo(true);
                 Note note = new Note(-1, "New title", "New description");
                 intent.putExtra(Constants.NOTE, note);
+//                Log.d(TAG, "Flag Repo begin CREATE note " + flagRepo.isFlagInitRepo());
                 startActivity(intent);
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
+/*
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             flagRepo.setFlagInitRepo(true);
+            Log.d(TAG, "Flag Repo CREATE note " + flagRepo.isFlagInitRepo());
             adapter.setNotes(repository.getAll());
             list.setAdapter(adapter);
         }
     }
-/*
+*/
 
     @Override
     protected void onResume() {
         super.onResume();
-        flagRepo = false;
+        flagRepo.setFlagInitRepo(true);
+//        Log.d(TAG, "Flag Repo UPDATE " + flagRepo.isFlagInitRepo());
         adapter.setNotes(repository.getAll());
-//        adapter.notifyItemChanged();
-//        adapter.notifyItemRangeInserted();
         list.setAdapter(adapter);
     }
-*/
 
-/*    @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        adapter.setNotes(repository.getAll());
-        list.setAdapter(adapter);
-    }*/
 }

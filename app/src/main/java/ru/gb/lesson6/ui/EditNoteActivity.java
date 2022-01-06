@@ -38,69 +38,33 @@ public class EditNoteActivity extends AppCompatActivity implements View.OnClickL
 
         Intent intent = getIntent();
         if (intent != null) {
-//            if (intent.hasExtra(Constants.NOTE_ID) && intent.getIntExtra(Constants.NOTE_ID, id_new) == id) {
-//            if (intent.hasExtra(Constants.NOTE_ID)) {
-//                int id_new = intent.getIntExtra(Constants.NOTE_ID,id_create);
-//                int id_new = intent.getIntExtra(Constants.NOTE_ID,id_create);
-//                if (intent.getIntExtra(Constants.NOTE_ID, id_create) == id_create) {
-
-//                Note note = new Note(intent.getIntExtra(Constants.NOTE_ID, id_new), "New title", "New description");
-//                Note note = new Note( "New title", "New description");
-////                note.setTitle(String.valueOf(title));
-////                note.setDescription(String.valueOf(description));
-////                id = note.getId();
-//                title.setText(note.getTitle());
-//                description.setText(note.getDescription());
-
-//                }
-
-//            } else {
-//            if (intent.getIntExtra(Constants.NOTE, id_create) == id_create) {
-//                Note note = (Note) intent.getSerializableExtra(Constants.NOTE);
-//                note.setTitle(title.getText().toString());
-//                note.setDescription(description.getText().toString());
-//            } else {
             Note note = (Note) intent.getSerializableExtra(Constants.NOTE);
             id = note.getId();
             title.setText(note.getTitle());
             description.setText(note.getDescription());
-//            }
         }
         saveNote.setOnClickListener(this);
-//        }
     }
 
     @Override
     public void onClick(View v) {
-//        note.setTitle(String.valueOf(title));
-//        note.setDescription(String.valueOf(description));
 
-//        note.setTitle(title.getText().toString());
-//        note.setDescription(description.getText().toString());
         Note note = new Note(id, title.getText().toString(), description.getText().toString());
 
-//        if (note.getId() == id) {
         if (id == -1) {
             repository.create(note);
-//            Toast.makeText(this,
-//                    "Create note " + note.getId(),
-//                    Toast.LENGTH_LONG
-//                    ).show();
-//            id = repository.create(note);
-            Log.d(TAG, "Create note " + note.getId());
-//            Log.d(TAG, "Create note " + id);
-//            id = note.getId();
-//            title.setText(note.getTitle());
-//            description.setText(note.getDescription());
+//            Log.d(TAG, "Create note " + note.getId());
+
         } else {
             repository.update(note);
-            Log.d(TAG, "Update note " + note.getId());
+//            Log.d(TAG, "Update note " + note.getId());
         }
-//        onBackPressed();
 
+/*
         Intent intent = new Intent(this,NotesListActivity.class);
         intent.putExtra(Constants.NOTE,note);
         startActivity(intent);
+*/
         finish();
 
     }
