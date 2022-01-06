@@ -22,7 +22,6 @@ public class InMemoryRepoImpl implements Repo {
 
     }
 
-
     private ArrayList<Note> notes = new ArrayList<>();
     private int counter = 0;
 

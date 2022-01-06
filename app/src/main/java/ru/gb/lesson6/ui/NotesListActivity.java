@@ -38,7 +38,7 @@ public class NotesListActivity extends AppCompatActivity implements NotesAdapter
 
 
         list = findViewById(R.id.list);
-        // list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        // list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)); // horizontal
         list.setLayoutManager(new LinearLayoutManager(this)); // Vertical
         list.setAdapter(adapter);
 
@@ -82,7 +82,16 @@ public class NotesListActivity extends AppCompatActivity implements NotesAdapter
         switch (item.getItemId())
         {
             case R.id.main_create:
+                // создать Intent
                 // TODO запустить EditNoteActivity
+                Intent intent = new Intent(this, EditNoteActivity.class);
+//                intent.putExtra(Constants.NOTE, InMemoryRepoImpl.getInstance().read());
+//                intent.putExtra(Constants.NOTE, notes.size());
+
+//                intent.putExtra(Constants.NOTE_ID, repository.getAll().size()+1);
+                Note note = new Note("New title", "New description");
+                intent.putExtra(Constants.NOTE, note );
+                startActivity(intent);
                 return true;
         }
         return super.onOptionsItemSelected(item);
