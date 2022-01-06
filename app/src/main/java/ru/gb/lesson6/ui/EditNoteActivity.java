@@ -2,9 +2,11 @@ package ru.gb.lesson6.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,10 +23,9 @@ public class EditNoteActivity extends AppCompatActivity implements View.OnClickL
     private EditText description;
     private Button saveNote;
     private int id = -1;
-    private int id_create = -2;
     private Repo repository = InMemoryRepoImpl.getInstance();
-    private Note note;
-    private int id_new;
+    public static final String TAG = "happy";
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,35 +55,53 @@ public class EditNoteActivity extends AppCompatActivity implements View.OnClickL
 //                }
 
 //            } else {
-
-                Note note = (Note) intent.getSerializableExtra(Constants.NOTE);
-                id = note.getId();
-                title.setText(note.getTitle());
-                description.setText(note.getDescription());
-
-            }
-            saveNote.setOnClickListener(this);
+//            if (intent.getIntExtra(Constants.NOTE, id_create) == id_create) {
+//                Note note = (Note) intent.getSerializableExtra(Constants.NOTE);
+//                note.setTitle(title.getText().toString());
+//                note.setDescription(description.getText().toString());
+//            } else {
+            Note note = (Note) intent.getSerializableExtra(Constants.NOTE);
+            id = note.getId();
+            title.setText(note.getTitle());
+            description.setText(note.getDescription());
+//            }
+        }
+        saveNote.setOnClickListener(this);
 //        }
     }
 
     @Override
     public void onClick(View v) {
 //        note.setTitle(String.valueOf(title));
-        note.setTitle(title.getText().toString());
 //        note.setDescription(String.valueOf(description));
-        note.setDescription(description.getText().toString());
 
-        if (this.note.getId() == null) {
+//        note.setTitle(title.getText().toString());
+//        note.setDescription(description.getText().toString());
+        Note note = new Note(id, title.getText().toString(), description.getText().toString());
+
+//        if (note.getId() == id) {
+        if (id == -1) {
             repository.create(note);
+//            Toast.makeText(this,
+//                    "Create note " + note.getId(),
+//                    Toast.LENGTH_LONG
+//                    ).show();
+//            id = repository.create(note);
+            Log.d(TAG, "Create note " + note.getId());
+//            Log.d(TAG, "Create note " + id);
+//            id = note.getId();
+//            title.setText(note.getTitle());
+//            description.setText(note.getDescription());
         } else {
             repository.update(note);
+            Log.d(TAG, "Update note " + note.getId());
         }
+//        onBackPressed();
 
+        Intent intent = new Intent(this,NotesListActivity.class);
+        intent.putExtra(Constants.NOTE,note);
+        startActivity(intent);
+        finish();
 
-//        title.setText(note.getTitle());
-//        description.setText(note.getDescription());
-
-//        id = this.repository.create(note);
-//        id = note.getId();
     }
 }

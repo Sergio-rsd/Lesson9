@@ -1,18 +1,21 @@
 package ru.gb.lesson6.ui;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import ru.gb.lesson6.R;
 import ru.gb.lesson6.data.Constants;
 import ru.gb.lesson6.data.InMemoryRepoImpl;
+import ru.gb.lesson6.data.InitRepo;
 import ru.gb.lesson6.data.Note;
 import ru.gb.lesson6.data.Repo;
 import ru.gb.lesson6.recycler.NotesAdapter;
@@ -23,13 +26,36 @@ public class NotesListActivity extends AppCompatActivity implements NotesAdapter
     private Repo repository = InMemoryRepoImpl.getInstance();
     private RecyclerView list;
     private NotesAdapter adapter;
+    private InitRepo flagRepo = new InitRepo();
+    private final boolean flagTest = true;
+    public static final String RESULT = "RESULT";
+    public static final String TAG = "happy";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes_list);
 
-        fillRepo();
+        Log.d(TAG,"Flag Repo Before " + flagRepo.isFlagInitRepo());
+
+
+//        flagRepo.setFlagInitRepo(false);
+//        Log.d(TAG,"Flag Repo After " + flagRepo.isFlagInitRepo());
+        if (savedInstanceState != null && savedInstanceState.containsKey(RESULT)) {
+            flagRepo = (InitRepo) savedInstanceState.getSerializable(RESULT);
+            Log.d(TAG,"Flag REPO " + flagRepo.isFlagInitRepo());
+//            flagRepo.setFlagInitRepo(true);
+/*            if (!flagRepo.isFlagInitRepo()) {
+//                fillRepo();
+                flagRepo.setFlagInitRepo(true);
+            }*/
+        }
+        if (!flagRepo.isFlagInitRepo()) {
+            fillRepo();
+            flagRepo.setFlagInitRepo(true);
+        }
+        Log.d(TAG,"Flag Repo After " + flagRepo.isFlagInitRepo());
 
         adapter = new NotesAdapter();
         adapter.setNotes(repository.getAll());
@@ -43,6 +69,12 @@ public class NotesListActivity extends AppCompatActivity implements NotesAdapter
         list.setAdapter(adapter);
 
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(RESULT,flagRepo);
     }
 
     private void fillRepo() {
@@ -68,6 +100,7 @@ public class NotesListActivity extends AppCompatActivity implements NotesAdapter
     public void onNoteClick(Note note) {
         Intent intent = new Intent(this, EditNoteActivity.class);
         intent.putExtra(Constants.NOTE, note);
+        flagRepo.setFlagInitRepo(true);
         startActivity(intent);
     }
 
@@ -79,8 +112,7 @@ public class NotesListActivity extends AppCompatActivity implements NotesAdapter
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case R.id.main_create:
                 // создать Intent
                 // TODO запустить EditNoteActivity
@@ -89,11 +121,41 @@ public class NotesListActivity extends AppCompatActivity implements NotesAdapter
 //                intent.putExtra(Constants.NOTE, notes.size());
 
 //                intent.putExtra(Constants.NOTE_ID, repository.getAll().size()+1);
-                Note note = new Note("New title", "New description");
-                intent.putExtra(Constants.NOTE, note );
+                flagRepo.setFlagInitRepo(true);
+                Note note = new Note(-1, "New title", "New description");
+                intent.putExtra(Constants.NOTE, note);
                 startActivity(intent);
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            flagRepo.setFlagInitRepo(true);
+            adapter.setNotes(repository.getAll());
+            list.setAdapter(adapter);
+        }
+    }
+/*
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        flagRepo = false;
+        adapter.setNotes(repository.getAll());
+//        adapter.notifyItemChanged();
+//        adapter.notifyItemRangeInserted();
+        list.setAdapter(adapter);
+    }
+*/
+
+/*    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        adapter.setNotes(repository.getAll());
+        list.setAdapter(adapter);
+    }*/
 }
