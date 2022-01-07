@@ -1,4 +1,4 @@
-package ru.gb.lesson6.data;
+package ru.gb.lesson7.data;
 
 public interface Constants {
     public static final String NOTE = "NOTE";

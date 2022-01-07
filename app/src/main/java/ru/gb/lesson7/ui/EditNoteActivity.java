@@ -1,21 +1,19 @@
-package ru.gb.lesson6.ui;
+package ru.gb.lesson7.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import ru.gb.lesson6.R;
-import ru.gb.lesson6.data.Constants;
-import ru.gb.lesson6.data.InMemoryRepoImpl;
-import ru.gb.lesson6.data.Note;
-import ru.gb.lesson6.data.Repo;
+import ru.gb.lesson7.R;
+import ru.gb.lesson7.data.Constants;
+import ru.gb.lesson7.data.InMemoryRepoImpl;
+import ru.gb.lesson7.data.Note;
+import ru.gb.lesson7.data.Repo;
 
 public class EditNoteActivity extends AppCompatActivity implements View.OnClickListener {
 

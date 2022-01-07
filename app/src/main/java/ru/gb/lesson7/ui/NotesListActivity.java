@@ -1,24 +1,22 @@
-package ru.gb.lesson6.ui;
+package ru.gb.lesson7.ui;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import ru.gb.lesson6.R;
-import ru.gb.lesson6.data.Constants;
-import ru.gb.lesson6.data.InMemoryRepoImpl;
-import ru.gb.lesson6.data.InitRepo;
-import ru.gb.lesson6.data.Note;
-import ru.gb.lesson6.data.Repo;
-import ru.gb.lesson6.recycler.NotesAdapter;
+import ru.gb.lesson7.R;
+import ru.gb.lesson7.data.Constants;
+import ru.gb.lesson7.data.InMemoryRepoImpl;
+import ru.gb.lesson7.data.InitRepo;
+import ru.gb.lesson7.data.Note;
+import ru.gb.lesson7.data.Repo;
+import ru.gb.lesson7.recycler.NotesAdapter;
 
 public class NotesListActivity extends AppCompatActivity implements NotesAdapter.OnNoteClickListener {
 

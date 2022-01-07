@@ -1,4 +1,4 @@
-package ru.gb.lesson6;
+package ru.gb.lesson7;
 
 import android.content.Context;
 
