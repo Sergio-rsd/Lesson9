@@ -36,6 +36,7 @@ public class NotesListActivity extends AppCompatActivity implements NotesAdapter
 
 //        Log.d(TAG, "Flag Repo Before " + flagRepo.isFlagInitRepo());
 
+/*
         if (savedInstanceState != null && savedInstanceState.containsKey(RESULT)) {
             flagRepo = (InitRepo) savedInstanceState.getSerializable(RESULT);
 //            Log.d(TAG, "Flag REPO from save INSTANCE " + flagRepo.isFlagInitRepo());
@@ -43,6 +44,11 @@ public class NotesListActivity extends AppCompatActivity implements NotesAdapter
         } else if (!flagRepo.isFlagInitRepo()) {
             fillRepo();
             flagRepo.setFlagInitRepo(true);
+        }
+
+  */
+        if (savedInstanceState == null) {
+            fillRepo();
         }
 
 //        Log.d(TAG, "Flag Repo After " + flagRepo.isFlagInitRepo());
