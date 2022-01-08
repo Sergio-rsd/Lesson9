@@ -24,9 +24,9 @@ public class NotesListActivity extends AppCompatActivity implements NotesAdapter
     private Repo repository = InMemoryRepoImpl.getInstance();
     private RecyclerView list;
     private NotesAdapter adapter;
-    private InitRepo flagRepo = new InitRepo();
-    public static final String RESULT = "RESULT";
-    public static final String TAG = "happy";
+//    private InitRepo flagRepo = new InitRepo();
+//    public static final String RESULT = "RESULT";
+//    public static final String TAG = "happy";
 
 
     @Override
@@ -47,9 +47,9 @@ public class NotesListActivity extends AppCompatActivity implements NotesAdapter
         }
 
   */
-        if (savedInstanceState == null) {
-            fillRepo();
-        }
+//        if (savedInstanceState == null) {
+//            fillRepo();
+//        }
 
 //        Log.d(TAG, "Flag Repo After " + flagRepo.isFlagInitRepo());
 
@@ -65,12 +65,14 @@ public class NotesListActivity extends AppCompatActivity implements NotesAdapter
         list.setAdapter(adapter);
 
     }
-
+/*
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable(RESULT, flagRepo);
     }
+    */
+/*
 
     private void fillRepo() {
         repository.create(new Note("Title 1", "Description 1"));
@@ -90,12 +92,13 @@ public class NotesListActivity extends AppCompatActivity implements NotesAdapter
         repository.create(new Note("Title 15", "Description 15"));
         repository.create(new Note("Title 16", "Description 16"));
     }
+*/
 
     @Override
     public void onNoteClick(Note note) {
         Intent intent = new Intent(this, EditNoteActivity.class);
         intent.putExtra(Constants.NOTE, note);
-        flagRepo.setFlagInitRepo(true);
+//        flagRepo.setFlagInitRepo(true);
         startActivity(intent);
     }
 
@@ -112,7 +115,7 @@ public class NotesListActivity extends AppCompatActivity implements NotesAdapter
                 // создать Intent
                 // TODO запустить EditNoteActivity
                 Intent intent = new Intent(this, EditNoteActivity.class);
-                flagRepo.setFlagInitRepo(true);
+//                flagRepo.setFlagInitRepo(true);
                 Note note = new Note(-1, "New title", "New description");
                 intent.putExtra(Constants.NOTE, note);
 //                Log.d(TAG, "Flag Repo begin CREATE note " + flagRepo.isFlagInitRepo());
@@ -138,7 +141,7 @@ public class NotesListActivity extends AppCompatActivity implements NotesAdapter
     @Override
     protected void onResume() {
         super.onResume();
-        flagRepo.setFlagInitRepo(true);
+//        flagRepo.setFlagInitRepo(true);
 //        Log.d(TAG, "Flag Repo UPDATE " + flagRepo.isFlagInitRepo());
         adapter.setNotes(repository.getAll());
         list.setAdapter(adapter);
