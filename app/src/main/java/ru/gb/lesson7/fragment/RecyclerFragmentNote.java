@@ -1,5 +1,6 @@
 package ru.gb.lesson7.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,11 +19,23 @@ import ru.gb.lesson7.data.Note;
 import ru.gb.lesson7.data.Repo;
 import ru.gb.lesson7.recycler.NotesAdapter;
 
-public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNoteClickListener{
+
+public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNoteClickListener {
 
     private Repo repository = InMemoryRepoImpl.getInstance();
     private NotesAdapter adapter = new NotesAdapter();
     RecyclerView listAdapter;
+    private Note note;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        if (context instanceof Controller) {
+            this.controller = (Controller) context;
+        } else {
+            throw new IllegalStateException("Activity must implement Controller");
+        }
+        super.onAttach(context);
+    }
 
     @Nullable
     @Override
@@ -40,8 +53,17 @@ public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNot
         listAdapter.setAdapter(adapter);
     }
 
+    public interface Controller {
+        void beginEditNote(Note note);
+    }
+
+    private Controller controller;
+
     @Override
     public void onNoteClick(Note note) {
-        Toast.makeText(requireContext(), "Клик", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(requireContext(), "Клик", Toast.LENGTH_SHORT).show();
+
+        controller.beginEditNote(note);
+
     }
 }

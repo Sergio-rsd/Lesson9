@@ -24,6 +24,7 @@ public class NotesListActivity extends AppCompatActivity implements NotesAdapter
     private Repo repository = InMemoryRepoImpl.getInstance();
     private RecyclerView list;
     private NotesAdapter adapter;
+
 //    private InitRepo flagRepo = new InitRepo();
 //    public static final String RESULT = "RESULT";
 //    public static final String TAG = "happy";
