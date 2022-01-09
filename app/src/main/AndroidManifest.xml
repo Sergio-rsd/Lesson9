@@ -9,15 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Lesson7">
-        <activity android:name="ru.gb.lesson7.ui.EditNoteActivity"/>
         <activity
-            android:name="ru.gb.lesson7.ui.NotesListActivity"
+            android:name=".ui.NotesListActivity"
+            android:exported="false" />
+        <activity android:name=".ui.EditNoteActivity" />
+        <activity
+            android:name=".ui.NotesListFragmentActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 
