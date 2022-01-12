@@ -25,7 +25,7 @@ public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNot
     private Repo repository = InMemoryRepoImpl.getInstance();
     private NotesAdapter adapter = new NotesAdapter();
     RecyclerView listAdapter;
-    private Note note;
+//    private Note note;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -52,15 +52,6 @@ public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNot
         listAdapter.setLayoutManager(new LinearLayoutManager(requireContext()));
         listAdapter.setAdapter(adapter);
 
-/*
-        Bundle args = getArguments();
-
-        if (args != null) {
-            Note note = (Note) args.getSerializable(RESULT);
-
-        }
-*/
-
     }
 
     public interface Controller {
@@ -71,39 +62,10 @@ public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNot
 
     @Override
     public void onNoteClick(Note note) {
-//        Toast.makeText(requireContext(), "Клик", Toast.LENGTH_SHORT).show();
 
         controller.beginEditNote(note);
 
-/*        requireActivity().
-                getSupportFragmentManager()
-//        getChildFragmentManager()
-                .beginTransaction()
-                .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note))
-//                .add(R.id.main_list_notes, EditNoteFragment.getInstance(note))
-                .addToBackStack(null)
-                .commit();
-        */
+
     }
-
-/*
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (note != null) {
-
-//            controller.beginEditNote(note);
-//            requireActivity()
-//                    getSupportFragmentManager()
-
-                getChildFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note))
-                    .addToBackStack(null)
-                    .commit();
-        }
-    }
-*/
 
 }
