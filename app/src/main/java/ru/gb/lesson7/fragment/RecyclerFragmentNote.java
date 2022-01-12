@@ -51,6 +51,16 @@ public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNot
         listAdapter = view.findViewById(R.id.list_notes);
         listAdapter.setLayoutManager(new LinearLayoutManager(requireContext()));
         listAdapter.setAdapter(adapter);
+
+/*
+        Bundle args = getArguments();
+
+        if (args != null) {
+            Note note = (Note) args.getSerializable(RESULT);
+
+        }
+*/
+
     }
 
     public interface Controller {
@@ -65,5 +75,35 @@ public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNot
 
         controller.beginEditNote(note);
 
+/*        requireActivity().
+                getSupportFragmentManager()
+//        getChildFragmentManager()
+                .beginTransaction()
+                .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note))
+//                .add(R.id.main_list_notes, EditNoteFragment.getInstance(note))
+                .addToBackStack(null)
+                .commit();
+        */
     }
+
+/*
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (note != null) {
+
+//            controller.beginEditNote(note);
+//            requireActivity()
+//                    getSupportFragmentManager()
+
+                getChildFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note))
+                    .addToBackStack(null)
+                    .commit();
+        }
+    }
+*/
+
 }

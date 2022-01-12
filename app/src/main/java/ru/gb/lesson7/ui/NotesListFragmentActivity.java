@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import ru.gb.lesson7.R;
 import ru.gb.lesson7.data.InMemoryRepoImpl;
@@ -15,7 +17,10 @@ import ru.gb.lesson7.fragment.EditNoteFragment;
 import ru.gb.lesson7.fragment.RecyclerFragmentNote;
 
 public class NotesListFragmentActivity extends AppCompatActivity implements RecyclerFragmentNote.Controller {
+
     private Repo repository = InMemoryRepoImpl.getInstance();
+    Note note;
+    public static final String TAG = "happy";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,15 +32,39 @@ public class NotesListFragmentActivity extends AppCompatActivity implements Recy
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.main_list_notes, listNotes)
+//                .addToBackStack(null) // TODO надо выходить совсем
                 .commit();
+/*
+
+        if (note != null) {
+            Toast.makeText(this, "Редактирование", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
+            beginEditNote(note);
+*/
+/*
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note))
+//                .add(R.id.main_list_notes, EditNoteFragment.getInstance(note))
+                    .addToBackStack(null)
+                    .commit();
+            *//*
+
+        }
+*/
+
+//        EditNoteFragment editNoteFragment = EditNoteFragment.getInstance();
+
     }
 
     @Override
     public void beginEditNote(Note note) {
 
         getSupportFragmentManager()
+//        getChildFragmentManager()
                 .beginTransaction()
                 .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note))
+//                .add(R.id.main_list_notes, EditNoteFragment.getInstance(note))
                 .addToBackStack(null)
                 .commit();
     }
@@ -54,6 +83,7 @@ public class NotesListFragmentActivity extends AppCompatActivity implements Recy
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note))
+//                        .add(R.id.main_list_notes, EditNoteFragment.getInstance(note))
                         .addToBackStack(null)
                         .commit();
 
@@ -62,15 +92,14 @@ public class NotesListFragmentActivity extends AppCompatActivity implements Recy
 
         return super.onOptionsItemSelected(item);
     }
-/*
-    @Override
+
+/*    @Override
     protected void onResume() {
         super.onResume();
-//        flagRepo.setFlagInitRepo(true);
-//        Log.d(TAG, "Flag Repo UPDATE " + flagRepo.isFlagInitRepo());
-        adapter.setNotes(repository.getAll());
-        list.setAdapter(adapter);
-    }
-    */
+        EditNoteFragment editNote = (EditNoteFragment) getSupportFragmentManager().findFragmentById(R.id.edit_note_title);
+        if(editNote != null){
 
+//            beginEditNote(Note note); // TODO как?
+        }
+    }*/
 }
