@@ -3,6 +3,7 @@ package ru.gb.lesson7.ui;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -18,8 +19,9 @@ import ru.gb.lesson7.fragment.RecyclerFragmentNote;
 
 public class NotesListFragmentActivity extends AppCompatActivity implements RecyclerFragmentNote.Controller {
 
+    private static final String TAG = "happy";
     private Repo repository = InMemoryRepoImpl.getInstance();
-    //    Note note;
+    Note note;
 //    public static final String TAG = "happy";
 
     @Override
@@ -35,17 +37,49 @@ public class NotesListFragmentActivity extends AppCompatActivity implements Recy
                     .replace(R.id.main_list_notes, listNotes)
                     .commit();
         }
+/*
 
+        EditNoteFragment editNoteFragment = EditNoteFragment.getInstance(note);
+        if (editNoteFragment != null) {
+
+
+            listNotes.updateNotes(note, note.getId());
+        }
+*/
+
+/*
+        EditNoteFragment editNoteFragment;
+//        editNoteFragment.updateNote();
+        editNoteFragment = (EditNoteFragment) getSupportFragmentManager().findFragmentByTag("EDIT_FRAGMENT");
+
+        Log.d(TAG, "Note :" + editNoteFragment);
+        if(editNoteFragment != null) {
+//        assert editNoteFragment != null;
+            note = editNoteFragment.updateNotes(note);
+
+            Log.d(TAG, "Note :" + note);
+//            Toast.makeText(this, "Заметка " + note, Toast.LENGTH_SHORT).show();
+        }
+        */
     }
+
 
     @Override
     public void beginEditNote(Note note) {
+        if (isLandscape()) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.edit_note_holder, EditNoteFragment.getInstance(note))
+                    .addToBackStack(null)
+                    .commit();
+        } else {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note))
+                    .addToBackStack(null)
+                    .commit();
+        }
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note))
-                .addToBackStack(null)
-                .commit();
     }
 
     @Override
@@ -59,11 +93,20 @@ public class NotesListFragmentActivity extends AppCompatActivity implements Recy
         switch ((item.getItemId())) {
             case R.id.main_create:
                 Note note = new Note(-1, "New title", "New description");
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note))
-                        .addToBackStack(null)
-                        .commit();
+
+                if (isLandscape()) {
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.edit_note_holder, EditNoteFragment.getInstance(note))
+                            .addToBackStack(null)
+                            .commit();
+                } else {
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note))
+                            .addToBackStack(null)
+                            .commit();
+                }
 
                 return true;
         }
@@ -71,4 +114,7 @@ public class NotesListFragmentActivity extends AppCompatActivity implements Recy
         return super.onOptionsItemSelected(item);
     }
 
+    public boolean isLandscape() {
+        return getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+    }
 }

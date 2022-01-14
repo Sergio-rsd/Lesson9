@@ -25,7 +25,7 @@ public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNot
     private Repo repository = InMemoryRepoImpl.getInstance();
     private NotesAdapter adapter = new NotesAdapter();
     RecyclerView listAdapter;
-//    private Note note;
+    private Note note;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -43,15 +43,28 @@ public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNot
         return inflater.inflate(R.layout.fragment_recycle_note, container, false);
     }
 
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         adapter.setNotes(repository.getAll());
+//        adapter.notifyDataSetChanged();
         adapter.setOnNoteClickListener(this);
         listAdapter = view.findViewById(R.id.list_notes);
         listAdapter.setLayoutManager(new LinearLayoutManager(requireContext()));
         listAdapter.setAdapter(adapter);
 
+
+    }
+
+    public void updateNotes(Note note, int position) {
+        if (note.getId() == null) {
+            repository.create(note);
+            adapter.notifyItemInserted(repository.getAll().size());
+        } else {
+            repository.update(note);
+            adapter.notifyItemChanged(position);
+        }
     }
 
     public interface Controller {
@@ -66,6 +79,26 @@ public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNot
         controller.beginEditNote(note);
 
 
+
+        /*
+//        adapter.setNotes(repository.getAll());
+////        adapter.setOnNoteClickListener(this);
+////        listAdapter = view.findViewById(R.id.list_notes);
+//        listAdapter.setLayoutManager(new LinearLayoutManager(requireContext()));
+//        listAdapter.setAdapter(adapter);
+//        Bundle args = getArguments();
+        EditNoteFragment args = EditNoteFragment.getInstance(note);
+        Toast.makeText(requireContext(), "После клика " + args, Toast.LENGTH_SHORT).show();
+*/
+/*
+        requireActivity().getSupportFragmentManager().popBackStack();
+
+        getChildFragmentManager()
+                .beginTransaction()
+                .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note))
+                .addToBackStack(null)
+                .commit();
+ */
     }
 
 }

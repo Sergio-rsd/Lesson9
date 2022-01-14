@@ -43,6 +43,8 @@ public class InMemoryRepoImpl implements Repo {
         int id = counter++;
         note.setId(id);
         notes.add(note);
+//        getAll();
+
         return id;
     }
 
@@ -63,6 +65,7 @@ public class InMemoryRepoImpl implements Repo {
                 break;
             }
         }
+//        getAll();
     }
 
     @Override

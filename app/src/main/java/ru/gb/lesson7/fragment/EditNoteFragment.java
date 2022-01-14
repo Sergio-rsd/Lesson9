@@ -18,6 +18,8 @@ import ru.gb.lesson7.R;
 import ru.gb.lesson7.data.InMemoryRepoImpl;
 import ru.gb.lesson7.data.Note;
 import ru.gb.lesson7.data.Repo;
+import ru.gb.lesson7.data.UpdaterNoteList;
+import ru.gb.lesson7.recycler.NotesAdapter;
 
 public class EditNoteFragment extends Fragment implements View.OnClickListener {
 
@@ -27,6 +29,7 @@ public class EditNoteFragment extends Fragment implements View.OnClickListener {
     private int id = -1;
     private Repo repository = InMemoryRepoImpl.getInstance();
     private Note note;
+    private NotesAdapter adapter;
     public static final String RESULT = "RESULT";
 //    public static final String TAG = "happy";
 
@@ -76,6 +79,12 @@ public class EditNoteFragment extends Fragment implements View.OnClickListener {
         } else {
             repository.update(note);
         }
+        id = note.getId();
+
+//        updateNotes(note, id);
+
+//        repository.getAll();
+//        adapter.setNotes(repository.getAll());
 
         requireActivity()
                 .getSupportFragmentManager()
@@ -85,11 +94,21 @@ public class EditNoteFragment extends Fragment implements View.OnClickListener {
 
 /*
     @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState = getArguments();
-        Log.d(TAG, "onSaveInstanceState() called with: outState = [" + outState + "]");
+    public void updateListNotes(Note note, int position) {
+
     }
 */
 
+    /*
+        @Override
+        public void onSaveInstanceState(@NonNull Bundle outState) {
+            super.onSaveInstanceState(outState);
+            outState = getArguments();
+            Log.d(TAG, "onSaveInstanceState() called with: outState = [" + outState + "]");
+        }
+    */
+
+/*    public Note updateNotes(Note note) {
+        return note;
+    }*/
 }
