@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import ru.gb.lesson7.R;
 import ru.gb.lesson7.data.InMemoryRepoImpl;
@@ -37,30 +35,7 @@ public class NotesListFragmentActivity extends AppCompatActivity implements Recy
                     .replace(R.id.main_list_notes, listNotes)
                     .commit();
         }
-/*
 
-        EditNoteFragment editNoteFragment = EditNoteFragment.getInstance(note);
-        if (editNoteFragment != null) {
-
-
-            listNotes.updateNotes(note, note.getId());
-        }
-*/
-
-/*
-        EditNoteFragment editNoteFragment;
-//        editNoteFragment.updateNote();
-        editNoteFragment = (EditNoteFragment) getSupportFragmentManager().findFragmentByTag("EDIT_FRAGMENT");
-
-        Log.d(TAG, "Note :" + editNoteFragment);
-        if(editNoteFragment != null) {
-//        assert editNoteFragment != null;
-            note = editNoteFragment.updateNotes(note);
-
-            Log.d(TAG, "Note :" + note);
-//            Toast.makeText(this, "Заметка " + note, Toast.LENGTH_SHORT).show();
-        }
-        */
     }
 
 
@@ -117,4 +92,9 @@ public class NotesListFragmentActivity extends AppCompatActivity implements Recy
     public boolean isLandscape() {
         return getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
     }
+
+/*    @Override
+    public void updateListNotes(Note note, int position) {
+
+    }*/
 }

@@ -5,11 +5,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentResultListener;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,6 +26,9 @@ public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNot
     private NotesAdapter adapter = new NotesAdapter();
     RecyclerView listAdapter;
     private Note note;
+    public static final String EDIT_NOTE ="EDIT_NOTE";
+    public static final String REQUEST_KEY = "REQUEST_KEY";
+
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -35,6 +38,18 @@ public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNot
             throw new IllegalStateException("Activity must implement Controller");
         }
         super.onAttach(context);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getParentFragmentManager().setFragmentResultListener(REQUEST_KEY, this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                Note note = (Note) result.getSerializable(EDIT_NOTE);
+                updateNotes(note, note.getId());
+            }
+        });
     }
 
     @Nullable
@@ -48,17 +63,14 @@ public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNot
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         adapter.setNotes(repository.getAll());
-//        adapter.notifyDataSetChanged();
         adapter.setOnNoteClickListener(this);
         listAdapter = view.findViewById(R.id.list_notes);
         listAdapter.setLayoutManager(new LinearLayoutManager(requireContext()));
         listAdapter.setAdapter(adapter);
-
-
     }
 
     public void updateNotes(Note note, int position) {
-        if (note.getId() == null) {
+        if (note.getId() == -1) {
             repository.create(note);
             adapter.notifyItemInserted(repository.getAll().size());
         } else {

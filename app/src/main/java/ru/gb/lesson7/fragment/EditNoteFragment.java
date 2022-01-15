@@ -1,14 +1,11 @@
 package ru.gb.lesson7.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,7 +15,6 @@ import ru.gb.lesson7.R;
 import ru.gb.lesson7.data.InMemoryRepoImpl;
 import ru.gb.lesson7.data.Note;
 import ru.gb.lesson7.data.Repo;
-import ru.gb.lesson7.data.UpdaterNoteList;
 import ru.gb.lesson7.recycler.NotesAdapter;
 
 public class EditNoteFragment extends Fragment implements View.OnClickListener {
@@ -31,6 +27,8 @@ public class EditNoteFragment extends Fragment implements View.OnClickListener {
     private Note note;
     private NotesAdapter adapter;
     public static final String RESULT = "RESULT";
+    public static final String EDIT_NOTE = "EDIT_NOTE";
+    public static final String REQUEST_KEY = "REQUEST_KEY";
 //    public static final String TAG = "happy";
 
     public static EditNoteFragment getInstance(Note note) {
@@ -73,6 +71,8 @@ public class EditNoteFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 //        Log.d(TAG, "onClick() called with: v = [" + v + "]");
         Note note = new Note(id, title.getText().toString(), description.getText().toString());
+/*
+
         if (id == -1) {
             repository.create(note);
 
@@ -80,6 +80,12 @@ public class EditNoteFragment extends Fragment implements View.OnClickListener {
             repository.update(note);
         }
         id = note.getId();
+*/
+
+        Bundle resultEditNote = new Bundle();
+        resultEditNote.putSerializable(EDIT_NOTE, note);
+        getParentFragmentManager().setFragmentResult(REQUEST_KEY, resultEditNote);
+
 
 //        updateNotes(note, id);
 
