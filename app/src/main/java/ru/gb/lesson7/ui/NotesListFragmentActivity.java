@@ -2,6 +2,7 @@ package ru.gb.lesson7.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ public class NotesListFragmentActivity extends AppCompatActivity implements Recy
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.main_list_notes, listNotes)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
         }
 
@@ -45,13 +47,16 @@ public class NotesListFragmentActivity extends AppCompatActivity implements Recy
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.edit_note_holder, EditNoteFragment.getInstance(note))
+//                    .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note))
                     .addToBackStack(null)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
         } else {
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note))
                     .addToBackStack(null)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
         }
 
@@ -74,12 +79,14 @@ public class NotesListFragmentActivity extends AppCompatActivity implements Recy
                             .beginTransaction()
                             .replace(R.id.edit_note_holder, EditNoteFragment.getInstance(note))
                             .addToBackStack(null)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                             .commit();
                 } else {
                     getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note))
                             .addToBackStack(null)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                             .commit();
                 }
 
@@ -93,8 +100,4 @@ public class NotesListFragmentActivity extends AppCompatActivity implements Recy
         return getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
     }
 
-/*    @Override
-    public void updateListNotes(Note note, int position) {
-
-    }*/
 }

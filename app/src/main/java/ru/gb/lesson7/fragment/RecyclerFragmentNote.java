@@ -58,7 +58,6 @@ public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNot
         return inflater.inflate(R.layout.fragment_recycle_note, container, false);
     }
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
@@ -89,8 +88,6 @@ public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNot
     public void onNoteClick(Note note) {
 
         controller.beginEditNote(note);
-
-
 
         /*
 //        adapter.setNotes(repository.getAll());

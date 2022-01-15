@@ -41,6 +41,18 @@ public class EditNoteFragment extends Fragment implements View.OnClickListener {
         return fragment;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+//        setRetainInstance(true);
+
+        if (savedInstanceState != null) {
+            requireActivity().getSupportFragmentManager().popBackStack();
+        }
+
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -85,12 +97,6 @@ public class EditNoteFragment extends Fragment implements View.OnClickListener {
         Bundle resultEditNote = new Bundle();
         resultEditNote.putSerializable(EDIT_NOTE, note);
         getParentFragmentManager().setFragmentResult(REQUEST_KEY, resultEditNote);
-
-
-//        updateNotes(note, id);
-
-//        repository.getAll();
-//        adapter.setNotes(repository.getAll());
 
         requireActivity()
                 .getSupportFragmentManager()
