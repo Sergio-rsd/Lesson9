@@ -23,7 +23,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NoteHolder> {
         notifyDataSetChanged();
     }
 
-
     public interface OnNoteClickListener{
         void onNoteClick(Note note);
     }

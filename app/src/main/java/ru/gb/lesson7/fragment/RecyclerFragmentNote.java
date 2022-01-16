@@ -1,10 +1,13 @@
 package ru.gb.lesson7.fragment;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +25,7 @@ import ru.gb.lesson7.recycler.NotesAdapter;
 
 public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNoteClickListener {
 
+    private static final String TAG = "happy";
     private Repo repository = InMemoryRepoImpl.getInstance();
     private NotesAdapter adapter = new NotesAdapter();
     RecyclerView listAdapter;
@@ -66,6 +70,21 @@ public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNot
         listAdapter = view.findViewById(R.id.list_notes);
         listAdapter.setLayoutManager(new LinearLayoutManager(requireContext()));
         listAdapter.setAdapter(adapter);
+
+//        controller.beginEditNote(note);
+
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Log.d(TAG, "onConfigurationChanged() called with: newConfig = [" + newConfig + "]");
+        if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
+            Toast.makeText(requireContext(), "LANDSCAPE", Toast.LENGTH_SHORT).show();
+        }
+
+        controller.beginEditNote(note);
+
     }
 
     public void updateNotes(Note note, int position) {
@@ -89,16 +108,6 @@ public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNot
 
         controller.beginEditNote(note);
 
-        /*
-//        adapter.setNotes(repository.getAll());
-////        adapter.setOnNoteClickListener(this);
-////        listAdapter = view.findViewById(R.id.list_notes);
-//        listAdapter.setLayoutManager(new LinearLayoutManager(requireContext()));
-//        listAdapter.setAdapter(adapter);
-//        Bundle args = getArguments();
-        EditNoteFragment args = EditNoteFragment.getInstance(note);
-        Toast.makeText(requireContext(), "После клика " + args, Toast.LENGTH_SHORT).show();
-*/
 /*
         requireActivity().getSupportFragmentManager().popBackStack();
 

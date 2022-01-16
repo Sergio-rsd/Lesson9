@@ -46,11 +46,11 @@ public class EditNoteFragment extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
 //        setRetainInstance(true);
 
+/*
         if (savedInstanceState != null) {
             requireActivity().getSupportFragmentManager().popBackStack();
         }
-
-
+*/
     }
 
     @Nullable
@@ -83,16 +83,7 @@ public class EditNoteFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 //        Log.d(TAG, "onClick() called with: v = [" + v + "]");
         Note note = new Note(id, title.getText().toString(), description.getText().toString());
-/*
 
-        if (id == -1) {
-            repository.create(note);
-
-        } else {
-            repository.update(note);
-        }
-        id = note.getId();
-*/
 
         Bundle resultEditNote = new Bundle();
         resultEditNote.putSerializable(EDIT_NOTE, note);
@@ -104,23 +95,4 @@ public class EditNoteFragment extends Fragment implements View.OnClickListener {
 
     }
 
-/*
-    @Override
-    public void updateListNotes(Note note, int position) {
-
-    }
-*/
-
-    /*
-        @Override
-        public void onSaveInstanceState(@NonNull Bundle outState) {
-            super.onSaveInstanceState(outState);
-            outState = getArguments();
-            Log.d(TAG, "onSaveInstanceState() called with: outState = [" + outState + "]");
-        }
-    */
-
-/*    public Note updateNotes(Note note) {
-        return note;
-    }*/
 }

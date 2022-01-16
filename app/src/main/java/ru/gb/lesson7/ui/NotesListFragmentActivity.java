@@ -40,7 +40,6 @@ public class NotesListFragmentActivity extends AppCompatActivity implements Recy
 
     }
 
-
     @Override
     public void beginEditNote(Note note) {
         if (isLandscape()) {
