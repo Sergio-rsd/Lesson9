@@ -15,8 +15,8 @@
         <activity android:name=".ui.EditNoteActivity" />
         <activity
             android:name=".ui.NotesListFragmentActivity"
-            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:exported="true">
+            <!--            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
