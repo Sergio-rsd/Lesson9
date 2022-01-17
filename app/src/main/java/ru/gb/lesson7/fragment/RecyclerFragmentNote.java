@@ -71,9 +71,8 @@ public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNot
         listAdapter.setLayoutManager(new LinearLayoutManager(requireContext()));
         listAdapter.setAdapter(adapter);
 
-//        controller.beginEditNote(note);
-
     }
+/*
 
     @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
@@ -86,6 +85,7 @@ public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNot
         controller.beginEditNote(note);
 
     }
+*/
 
     public void updateNotes(Note note, int position) {
         if (note.getId() == -1) {
