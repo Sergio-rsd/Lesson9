@@ -44,7 +44,6 @@ public class EditNoteFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setRetainInstance(true);
 
 /*
         if (savedInstanceState != null) {

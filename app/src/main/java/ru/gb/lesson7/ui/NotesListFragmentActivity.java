@@ -2,12 +2,14 @@ package ru.gb.lesson7.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import ru.gb.lesson7.R;
 import ru.gb.lesson7.data.InMemoryRepoImpl;
@@ -21,6 +23,8 @@ public class NotesListFragmentActivity extends AppCompatActivity implements Recy
     private static final String TAG = "happy";
     private Repo repository = InMemoryRepoImpl.getInstance();
     Note note;
+    private boolean mIsDynamic;
+
 //    public static final String TAG = "happy";
 
     @Override
@@ -38,10 +42,19 @@ public class NotesListFragmentActivity extends AppCompatActivity implements Recy
                     .commit();
         }
 
+/*
+
+        EditNoteFragment editNoteFragment = (EditNoteFragment) getSupportFragmentManager().findFragmentById(R.id.main_list_notes);
+        mIsDynamic = editNoteFragment == null || !editNoteFragment.isInLayout();
+        Toast.makeText(this, "Проверка существования " + mIsDynamic, Toast.LENGTH_SHORT).show();
+
+*/
+
     }
 
     @Override
     public void beginEditNote(Note note) {
+
         if (isLandscape()) {
             getSupportFragmentManager()
                     .beginTransaction()

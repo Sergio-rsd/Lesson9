@@ -108,15 +108,6 @@ public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNot
 
         controller.beginEditNote(note);
 
-/*
-        requireActivity().getSupportFragmentManager().popBackStack();
-
-        getChildFragmentManager()
-                .beginTransaction()
-                .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note))
-                .addToBackStack(null)
-                .commit();
- */
     }
 
 }
