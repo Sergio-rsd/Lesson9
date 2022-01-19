@@ -19,21 +19,26 @@ import ru.gb.lesson7.fragment.EditNoteFragment;
 import ru.gb.lesson7.fragment.RecyclerFragmentNote;
 
 public class NotesListFragmentActivity extends AppCompatActivity implements RecyclerFragmentNote.Controller {
+    private static final String RESULT = "RESULT";
 
-    private static final String TAG = "happy";
+//    private static final String TAG = "happy";
+
     private Repo repository = InMemoryRepoImpl.getInstance();
     Note note;
-    private boolean mIsDynamic;
 
-//    public static final String TAG = "happy";
+    private FragmentManager fragmentManager;
+    private boolean mIsDynamic = false;
+    public static final String EDIT_NOTE_TAG = "EDIT_NOTE_TAG";
+    private EditNoteFragment editNoteFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes_list_fragment);
 
-        RecyclerFragmentNote listNotes = new RecyclerFragmentNote();
 
+        RecyclerFragmentNote listNotes = new RecyclerFragmentNote();
         if (savedInstanceState == null) {
             getSupportFragmentManager()
                     .beginTransaction()
@@ -42,32 +47,90 @@ public class NotesListFragmentActivity extends AppCompatActivity implements Recy
                     .commit();
         }
 
-/*
+        fragmentManager = getSupportFragmentManager();
 
-        EditNoteFragment editNoteFragment = (EditNoteFragment) getSupportFragmentManager().findFragmentById(R.id.main_list_notes);
-        mIsDynamic = editNoteFragment == null || !editNoteFragment.isInLayout();
-        Toast.makeText(this, "Проверка существования " + mIsDynamic, Toast.LENGTH_SHORT).show();
+        mIsDynamic = (findViewById(R.id.edit_note_holder) != null);
 
-*/
+        editNoteFragment = (EditNoteFragment) fragmentManager.findFragmentByTag(EDIT_NOTE_TAG);
+
+        if (editNoteFragment != null) {
+            Bundle args = editNoteFragment.getArguments();
+            Note note = (Note) args.getSerializable(RESULT);
+
+//            Note note = editNoteFragment.getArguments();
+
+            fragmentManager.popBackStack(EDIT_NOTE_TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+            fragmentManager.executePendingTransactions();
+
+            if (mIsDynamic) {
+                fragmentManager
+                        .beginTransaction()
+//                        .replace(R.id.edit_note_holder, EditNoteFragment.getInstance(note), EDIT_NOTE_TAG)
+                        .add(R.id.edit_note_holder, EditNoteFragment.getInstance(note), EDIT_NOTE_TAG)
+                        .addToBackStack(EDIT_NOTE_TAG)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .commit();
+            } else {
+                fragmentManager
+                        .beginTransaction()
+//                        .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note), EDIT_NOTE_TAG)
+                        .add(R.id.main_list_notes, EditNoteFragment.getInstance(note), EDIT_NOTE_TAG)
+                        .addToBackStack(EDIT_NOTE_TAG)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .commit();
+            }
+
+        }
 
     }
 
     @Override
     public void beginEditNote(Note note) {
+/*
+
+        if (editNoteFragment == null) {
+            editNoteFragment = new EditNoteFragment();
+        }
+*/
+/*
+
+        if (!editNoteFragment.isVisible()) {
+            if (mIsDynamic) {
+                fragmentManager
+                        .beginTransaction()
+//                        .replace(R.id.edit_note_holder, EditNoteFragment.getInstance(note), EDIT_NOTE_TAG)
+                        .add(R.id.edit_note_holder, EditNoteFragment.getInstance(note), EDIT_NOTE_TAG)
+                        .addToBackStack(EDIT_NOTE_TAG)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .commit();
+            } else {
+                fragmentManager
+                        .beginTransaction()
+//                        .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note), EDIT_NOTE_TAG)
+                        .add(R.id.main_list_notes, EditNoteFragment.getInstance(note), EDIT_NOTE_TAG)
+                        .addToBackStack(EDIT_NOTE_TAG)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .commit();
+            }
+
+        }
+*/
+
 
         if (isLandscape()) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.edit_note_holder, EditNoteFragment.getInstance(note))
+                    .replace(R.id.edit_note_holder, EditNoteFragment.getInstance(note), EDIT_NOTE_TAG)
 //                    .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note))
-                    .addToBackStack(null)
+                    .addToBackStack(EDIT_NOTE_TAG)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
         } else {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note))
-                    .addToBackStack(null)
+                    .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note), EDIT_NOTE_TAG)
+                    .addToBackStack(EDIT_NOTE_TAG)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
         }
@@ -85,19 +148,47 @@ public class NotesListFragmentActivity extends AppCompatActivity implements Recy
         switch ((item.getItemId())) {
             case R.id.main_create:
                 Note note = new Note(-1, "New title", "New description");
+/*
+                if (editNoteFragment == null) {
+                    editNoteFragment = new EditNoteFragment();
+                }
+  */
+/*
+
+                if (!editNoteFragment.isVisible()) {
+                    if (mIsDynamic) {
+                        fragmentManager
+                                .beginTransaction()
+//                                .replace(R.id.edit_note_holder, EditNoteFragment.getInstance(note), EDIT_NOTE_TAG)
+                                .add(R.id.edit_note_holder, EditNoteFragment.getInstance(note), EDIT_NOTE_TAG)
+                                .addToBackStack(EDIT_NOTE_TAG)
+                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                                .commit();
+                    } else {
+                        fragmentManager
+                                .beginTransaction()
+//                                .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note), EDIT_NOTE_TAG)
+                                .add(R.id.main_list_notes, EditNoteFragment.getInstance(note), EDIT_NOTE_TAG)
+                                .addToBackStack(EDIT_NOTE_TAG)
+                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                                .commit();
+                    }
+
+                }
+*/
 
                 if (isLandscape()) {
                     getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.edit_note_holder, EditNoteFragment.getInstance(note))
-                            .addToBackStack(null)
+                            .replace(R.id.edit_note_holder, EditNoteFragment.getInstance(note), EDIT_NOTE_TAG)
+                            .addToBackStack(EDIT_NOTE_TAG)
                             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                             .commit();
                 } else {
                     getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note))
-                            .addToBackStack(null)
+                            .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note), EDIT_NOTE_TAG)
+                            .addToBackStack(EDIT_NOTE_TAG)
                             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                             .commit();
                 }

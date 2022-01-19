@@ -1,6 +1,7 @@
 package ru.gb.lesson7.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import ru.gb.lesson7.R;
 import ru.gb.lesson7.data.InMemoryRepoImpl;
@@ -29,7 +31,8 @@ public class EditNoteFragment extends Fragment implements View.OnClickListener {
     public static final String RESULT = "RESULT";
     public static final String EDIT_NOTE = "EDIT_NOTE";
     public static final String REQUEST_KEY = "REQUEST_KEY";
-//    public static final String TAG = "happy";
+    public static final String EDIT_NOTE_TAG = "EDIT_NOTE_TAG";
+    public static final String TAG = "happy";
 
     public static EditNoteFragment getInstance(Note note) {
         EditNoteFragment fragment = new EditNoteFragment();
@@ -67,13 +70,18 @@ public class EditNoteFragment extends Fragment implements View.OnClickListener {
         title = view.findViewById(R.id.edit_note_title);
         description = view.findViewById(R.id.edit_note_description);
         saveNote = view.findViewById(R.id.edit_note_update);
+//        Log.d(TAG,"Args :" + args);
 
         if (args != null && args.containsKey(RESULT)) {
             Note note = (Note) args.getSerializable(RESULT);
+//            Log.d(TAG,"Note :" + note);
+
             id = note.getId();
             title.setText(note.getTitle());
             description.setText(note.getDescription());
 
+            args.putSerializable(RESULT, note);
+//            fragment.setArguments(args);
         }
         saveNote.setOnClickListener(this);
     }
@@ -83,14 +91,17 @@ public class EditNoteFragment extends Fragment implements View.OnClickListener {
 //        Log.d(TAG, "onClick() called with: v = [" + v + "]");
         Note note = new Note(id, title.getText().toString(), description.getText().toString());
 
-
         Bundle resultEditNote = new Bundle();
         resultEditNote.putSerializable(EDIT_NOTE, note);
         getParentFragmentManager().setFragmentResult(REQUEST_KEY, resultEditNote);
 
         requireActivity()
                 .getSupportFragmentManager()
-                .popBackStack();
+                .popBackStack(EDIT_NOTE_TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+//                .popBackStack(EDIT_NOTE_TAG);
+
+//                .popBackStack();
+        // TODO FragmentManager.POP_BACK_STACK_INCLUSIVE надо ли?
 
     }
 
