@@ -87,36 +87,6 @@ public class NotesListFragmentActivity extends AppCompatActivity implements Recy
 
     @Override
     public void beginEditNote(Note note) {
-/*
-
-        if (editNoteFragment == null) {
-            editNoteFragment = new EditNoteFragment();
-        }
-*/
-/*
-
-        if (!editNoteFragment.isVisible()) {
-            if (mIsDynamic) {
-                fragmentManager
-                        .beginTransaction()
-//                        .replace(R.id.edit_note_holder, EditNoteFragment.getInstance(note), EDIT_NOTE_TAG)
-                        .add(R.id.edit_note_holder, EditNoteFragment.getInstance(note), EDIT_NOTE_TAG)
-                        .addToBackStack(EDIT_NOTE_TAG)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                        .commit();
-            } else {
-                fragmentManager
-                        .beginTransaction()
-//                        .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note), EDIT_NOTE_TAG)
-                        .add(R.id.main_list_notes, EditNoteFragment.getInstance(note), EDIT_NOTE_TAG)
-                        .addToBackStack(EDIT_NOTE_TAG)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                        .commit();
-            }
-
-        }
-*/
-
 
         if (isLandscape()) {
             getSupportFragmentManager()
@@ -148,34 +118,6 @@ public class NotesListFragmentActivity extends AppCompatActivity implements Recy
         switch ((item.getItemId())) {
             case R.id.main_create:
                 Note note = new Note(-1, "New title", "New description");
-/*
-                if (editNoteFragment == null) {
-                    editNoteFragment = new EditNoteFragment();
-                }
-  */
-/*
-
-                if (!editNoteFragment.isVisible()) {
-                    if (mIsDynamic) {
-                        fragmentManager
-                                .beginTransaction()
-//                                .replace(R.id.edit_note_holder, EditNoteFragment.getInstance(note), EDIT_NOTE_TAG)
-                                .add(R.id.edit_note_holder, EditNoteFragment.getInstance(note), EDIT_NOTE_TAG)
-                                .addToBackStack(EDIT_NOTE_TAG)
-                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                                .commit();
-                    } else {
-                        fragmentManager
-                                .beginTransaction()
-//                                .replace(R.id.main_list_notes, EditNoteFragment.getInstance(note), EDIT_NOTE_TAG)
-                                .add(R.id.main_list_notes, EditNoteFragment.getInstance(note), EDIT_NOTE_TAG)
-                                .addToBackStack(EDIT_NOTE_TAG)
-                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                                .commit();
-                    }
-
-                }
-*/
 
                 if (isLandscape()) {
                     getSupportFragmentManager()

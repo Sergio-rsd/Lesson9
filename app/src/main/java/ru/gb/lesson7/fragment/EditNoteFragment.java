@@ -80,8 +80,10 @@ public class EditNoteFragment extends Fragment implements View.OnClickListener {
             title.setText(note.getTitle());
             description.setText(note.getDescription());
 
-            args.putSerializable(RESULT, note);
-//            fragment.setArguments(args);
+//            args.putSerializable(RESULT, note);
+
+//            EditNoteFragment.getInstance(note).setArguments(args);
+
         }
         saveNote.setOnClickListener(this);
     }
@@ -98,10 +100,6 @@ public class EditNoteFragment extends Fragment implements View.OnClickListener {
         requireActivity()
                 .getSupportFragmentManager()
                 .popBackStack(EDIT_NOTE_TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-//                .popBackStack(EDIT_NOTE_TAG);
-
-//                .popBackStack();
-        // TODO FragmentManager.POP_BACK_STACK_INCLUSIVE надо ли?
 
     }
 
