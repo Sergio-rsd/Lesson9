@@ -117,7 +117,7 @@ public class NotesListFragmentActivity extends AppCompatActivity implements Recy
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch ((item.getItemId())) {
             case R.id.main_create:
-                Note note = new Note(-1, "New title", "New description");
+                Note note = new Note(-1, "New title", "New description","");
 
                 if (isLandscape()) {
                     getSupportFragmentManager()
