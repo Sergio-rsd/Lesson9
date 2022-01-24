@@ -8,17 +8,19 @@ public class Note implements Serializable {
     private String description;
 
     private String interest = "";
+    private String dataPerformance;
 
     public Note(String title, String description) {
         this.title = title;
         this.description = description;
     }
 
-    public Note(Integer id, String title, String description, String interest) {
+    public Note(Integer id, String title, String description, String interest, String dataPerformance) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.interest = interest;
+        this.dataPerformance = dataPerformance;
     }
 
     public Integer getId() {
@@ -51,5 +53,13 @@ public class Note implements Serializable {
 
     public void setInterest(String interest) {
         this.interest = interest;
+    }
+
+    public String getDataPerformance() {
+        return dataPerformance;
+    }
+
+    public void setDataPerformance(String dataPerformance) {
+        this.dataPerformance = dataPerformance;
     }
 }

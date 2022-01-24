@@ -22,7 +22,6 @@ import ru.gb.lesson7.data.Note;
 import ru.gb.lesson7.data.Repo;
 import ru.gb.lesson7.recycler.NotesAdapter;
 
-
 public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNoteClickListener {
 
     private static final String TAG = "happy";
@@ -72,7 +71,6 @@ public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNot
         listAdapter.setAdapter(adapter);
 
     }
-
 
     public void updateNotes(Note note, int position) {
         if (note.getId() == -1) {

@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:layout_margin="8dp"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <EditText
@@ -25,21 +25,45 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
-            android:lines="5"
+            android:lines="4"
             android:textSize="20sp"
             tools:text="Description" />
 
-        <Spinner
-            android:id="@+id/interest_place"
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="8dp"
-            android:background="#33002244"
-            android:contextClickable="true"
-            android:entries="@array/interest_name">
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical">
 
-        </Spinner>
+            <Spinner
+                android:id="@+id/interest_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="#33002244"
+                android:contextClickable="true"
+                android:entries="@array/interest_name">
+
+            </Spinner>
+
+            <TextView
+                android:id="@+id/current_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:textSize="15sp"
+                tools:text="DATA" />
+
+            <Button
+                android:id="@+id/change_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="#6638A69D"
+                android:text="@string/change_data"
+                android:textSize="10sp" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <Button

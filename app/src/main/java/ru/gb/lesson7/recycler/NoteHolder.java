@@ -14,6 +14,7 @@ public class NoteHolder extends RecyclerView.ViewHolder {
     private TextView title;
     private TextView description;
     private TextView interest;
+    private TextView dataPerformance;
     private Note note;
 
     public NoteHolder(@NonNull View itemView, NotesAdapter.OnNoteClickListener listener) {
@@ -21,6 +22,7 @@ public class NoteHolder extends RecyclerView.ViewHolder {
         title = itemView.findViewById(R.id.note_title);
         description = itemView.findViewById(R.id.note_description);
         interest = itemView.findViewById(R.id.interest_currency);
+        dataPerformance = itemView.findViewById(R.id.data_stamp);
 
         itemView.setOnClickListener(v -> listener.onNoteClick(note));
     }
@@ -31,5 +33,6 @@ public class NoteHolder extends RecyclerView.ViewHolder {
         title.setText(note.getTitle());
         description.setText(note.getDescription());
         interest.setText(note.getInterest());
+        dataPerformance.setText(note.getDataPerformance());
     }
 }
