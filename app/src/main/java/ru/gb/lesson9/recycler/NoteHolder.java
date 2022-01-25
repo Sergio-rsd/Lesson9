@@ -1,4 +1,4 @@
-package ru.gb.lesson7.recycler;
+package ru.gb.lesson9.recycler;
 
 import android.view.View;
 import android.widget.TextView;
@@ -6,8 +6,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import ru.gb.lesson7.R;
-import ru.gb.lesson7.data.Note;
+import ru.gb.lesson9.R;
+import ru.gb.lesson9.data.Note;
 
 public class NoteHolder extends RecyclerView.ViewHolder {
 

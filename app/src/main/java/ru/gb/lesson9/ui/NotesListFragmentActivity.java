@@ -1,4 +1,4 @@
-package ru.gb.lesson7.ui;
+package ru.gb.lesson9.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,14 +9,13 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import ru.gb.lesson7.R;
-import ru.gb.lesson7.data.InMemoryRepoImpl;
-import ru.gb.lesson7.data.Note;
-import ru.gb.lesson7.data.Repo;
-import ru.gb.lesson7.fragment.EditNoteFragment;
-import ru.gb.lesson7.fragment.RecyclerFragmentNote;
+import ru.gb.lesson9.R;
+import ru.gb.lesson9.data.InMemoryRepoImpl;
+import ru.gb.lesson9.data.Note;
+import ru.gb.lesson9.data.Repo;
+import ru.gb.lesson9.fragment.EditNoteFragment;
+import ru.gb.lesson9.fragment.RecyclerFragmentNote;
 
 public class NotesListFragmentActivity extends AppCompatActivity implements RecyclerFragmentNote.Controller {
     private static final String RESULT = "RESULT";

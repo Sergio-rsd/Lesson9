@@ -1,9 +1,8 @@
-package ru.gb.lesson7.fragment;
+package ru.gb.lesson9.fragment;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.format.DateUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,22 +13,19 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.google.android.material.navigation.NavigationBarView;
-
 import java.util.Calendar;
 
-import ru.gb.lesson7.R;
-import ru.gb.lesson7.data.InMemoryRepoImpl;
-import ru.gb.lesson7.data.Note;
-import ru.gb.lesson7.data.Repo;
-import ru.gb.lesson7.recycler.NotesAdapter;
+import ru.gb.lesson9.R;
+import ru.gb.lesson9.data.InMemoryRepoImpl;
+import ru.gb.lesson9.data.Note;
+import ru.gb.lesson9.data.Repo;
+import ru.gb.lesson9.recycler.NotesAdapter;
 
 public class EditNoteFragment extends Fragment implements View.OnClickListener {
 

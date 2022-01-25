@@ -1,13 +1,10 @@
-package ru.gb.lesson7.fragment;
+package ru.gb.lesson9.fragment;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,11 +13,11 @@ import androidx.fragment.app.FragmentResultListener;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import ru.gb.lesson7.R;
-import ru.gb.lesson7.data.InMemoryRepoImpl;
-import ru.gb.lesson7.data.Note;
-import ru.gb.lesson7.data.Repo;
-import ru.gb.lesson7.recycler.NotesAdapter;
+import ru.gb.lesson9.R;
+import ru.gb.lesson9.data.InMemoryRepoImpl;
+import ru.gb.lesson9.data.Note;
+import ru.gb.lesson9.data.Repo;
+import ru.gb.lesson9.recycler.NotesAdapter;
 
 public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNoteClickListener {
 

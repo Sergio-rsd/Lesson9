@@ -1,4 +1,4 @@
-package ru.gb.lesson7.recycler;
+package ru.gb.lesson9.recycler;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import ru.gb.lesson7.R;
-import ru.gb.lesson7.data.Note;
+import ru.gb.lesson9.R;
+import ru.gb.lesson9.data.Note;
 
 public class NotesAdapter extends RecyclerView.Adapter<NoteHolder> {
 
