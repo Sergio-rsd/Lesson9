@@ -71,21 +71,8 @@ public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNot
         listAdapter.setLayoutManager(new LinearLayoutManager(requireContext()));
         listAdapter.setAdapter(adapter);
 
-//        controller.beginEditNote(note);
-
     }
 
-    @Override
-    public void onConfigurationChanged(@NonNull Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        Log.d(TAG, "onConfigurationChanged() called with: newConfig = [" + newConfig + "]");
-        if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
-            Toast.makeText(requireContext(), "LANDSCAPE", Toast.LENGTH_SHORT).show();
-        }
-
-        controller.beginEditNote(note);
-
-    }
 
     public void updateNotes(Note note, int position) {
         if (note.getId() == -1) {
