@@ -30,6 +30,7 @@ public class NotesListFragmentActivity extends AppCompatActivity implements Recy
     private boolean mIsDynamic = false;
     public static final String EDIT_NOTE_TAG = "EDIT_NOTE_TAG";
     private EditNoteFragment editNoteFragment;
+    private RecyclerFragmentNote recyclerFragmentNote;
 
 
     @Override
@@ -104,7 +105,7 @@ public class NotesListFragmentActivity extends AppCompatActivity implements Recy
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
         }
-
+//        recyclerFragmentNote.updateNotes(note,note.getId());
     }
 
     @Override
@@ -117,7 +118,7 @@ public class NotesListFragmentActivity extends AppCompatActivity implements Recy
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch ((item.getItemId())) {
             case R.id.main_create:
-                Note note = new Note(-1, "New title", "New description");
+                Note note = new Note(-1, "New title", "New description","","");
 
                 if (isLandscape()) {
                     getSupportFragmentManager()
