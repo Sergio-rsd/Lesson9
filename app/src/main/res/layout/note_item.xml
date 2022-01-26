@@ -50,7 +50,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="8dp"
-            android:layout_weight="1"
+            android:layout_weight="1.5"
             android:orientation="vertical">
 
             <TextView
@@ -73,6 +73,13 @@
                 tools:text="дата" />
 
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/note_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_baseline_more_vert_24" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

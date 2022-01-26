@@ -97,7 +97,7 @@ public class EditNoteFragment extends Fragment implements View.OnClickListener {
         arrayInterest = getResources().getStringArray(R.array.interest_name);
 
         currentDateTime = view.findViewById(R.id.current_date);
-        changeData = view.findViewById(R.id.change_data);
+//        changeData = view.findViewById(R.id.change_data);
 
         if (args != null && args.containsKey(RESULT)) {
             Note note = (Note) args.getSerializable(RESULT);
@@ -126,7 +126,6 @@ public class EditNoteFragment extends Fragment implements View.OnClickListener {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     selectedInterest = arrayInterest[position];
-//                    Log.d(TAG,"Важность присвоение при выборе :" + selectedInterest);
                     note.setInterest(selectedInterest);
                     interest = note.getInterest();
                 }
@@ -138,7 +137,8 @@ public class EditNoteFragment extends Fragment implements View.OnClickListener {
             });
 
         }
-        changeData.setOnClickListener(this::setDate);
+//        changeData.setOnClickListener(this::setDate);
+        currentDateTime.setOnClickListener(this::setDate);
         saveNote.setOnClickListener(this);
     }
 

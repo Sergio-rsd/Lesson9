@@ -54,16 +54,7 @@
                 android:background="#7C4FA2EA"
                 android:textSize="15sp"
                 tools:text="DATA" />
-            <!--
-                        <Button
-                            android:id="@+id/change_data"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:background="#6638A69D"
-                            android:text="@string/change_data"
-                            android:textSize="10sp" />
-             -->
+
         </LinearLayout>
 
     </LinearLayout>

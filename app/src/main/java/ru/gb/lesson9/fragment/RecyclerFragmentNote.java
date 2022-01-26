@@ -16,10 +16,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import ru.gb.lesson9.R;
 import ru.gb.lesson9.data.InMemoryRepoImpl;
 import ru.gb.lesson9.data.Note;
+import ru.gb.lesson9.data.PopupMenuClick;
 import ru.gb.lesson9.data.Repo;
 import ru.gb.lesson9.recycler.NotesAdapter;
 
-public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNoteClickListener {
+//public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNoteClickListener {
+public class RecyclerFragmentNote extends Fragment implements PopupMenuClick {
 
     private static final String TAG = "happy";
     private Repo repository = InMemoryRepoImpl.getInstance();
@@ -62,7 +64,7 @@ public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNot
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         adapter.setNotes(repository.getAll());
-        adapter.setOnNoteClickListener(this);
+        adapter.setOnPopupMenuClick(this);
         listAdapter = view.findViewById(R.id.list_notes);
         listAdapter.setLayoutManager(new LinearLayoutManager(requireContext()));
         listAdapter.setAdapter(adapter);
@@ -79,17 +81,28 @@ public class RecyclerFragmentNote extends Fragment implements NotesAdapter.OnNot
         }
     }
 
+    @Override
+    public void click(int command, Note note, int position) {
+        switch (command){
+            case R.id.context_delete:
+                //
+                repository.delete(note.getId());
+                adapter.delete(repository.getAll(), position);
+                return;
+        }
+    }
+
     public interface Controller {
         void beginEditNote(Note note);
     }
 
     private Controller controller;
 
-    @Override
+/*    @Override
     public void onNoteClick(Note note) {
 
         controller.beginEditNote(note);
 
-    }
+    }*/
 
 }

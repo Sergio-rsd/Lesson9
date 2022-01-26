@@ -5,6 +5,7 @@ import java.util.List;
 
 public class InMemoryRepoImpl implements Repo {
 
+    // singleton для базы
     private static InMemoryRepoImpl repo;
 
     public static Repo getInstance() {
