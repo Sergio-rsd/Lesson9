@@ -35,19 +35,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NoteHolder> {
         notifyDataSetChanged();
     }
 
-    /*
-    public interface OnNoteClickListener{
-        void onNoteClick(Note note);
-    }
-
-    private OnNoteClickListener listener;
-
-    public void setOnNoteClickListener(OnNoteClickListener listener)
-    {
-        this.listener = listener;
-    }
-*/
-
     @NonNull
     @Override
     public NoteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

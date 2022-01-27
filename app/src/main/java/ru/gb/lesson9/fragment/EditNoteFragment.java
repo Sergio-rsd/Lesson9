@@ -76,7 +76,7 @@ public class EditNoteFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-//        Log.d(TAG, "onViewCreated() called with: view = [" + view + "], savedInstanceState = [" + savedInstanceState + "]");
+
         //  Spinner
         Spinner spinner = view.findViewById(R.id.interest_place);
         ArrayAdapter<?> adapter =
@@ -176,7 +176,6 @@ public class EditNoteFragment extends Fragment implements View.OnClickListener {
         Bundle resultEditNote = new Bundle();
         resultEditNote.putSerializable(EDIT_NOTE, note);
         getParentFragmentManager().setFragmentResult(REQUEST_KEY, resultEditNote);
-//        Log.d(TAG,"Важность сохранение :" + interest);
         requireActivity()
                 .getSupportFragmentManager()
                 .popBackStack(EDIT_NOTE_TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE);

@@ -23,6 +23,13 @@ public class Note implements Serializable {
         this.dataPerformance = dataPerformance;
     }
 
+    public Note(String title, String description, String interest, String dataPerformance) {
+        this.title = title;
+        this.description = description;
+        this.interest = interest;
+        this.dataPerformance = dataPerformance;
+    }
+
     public Integer getId() {
         return id;
     }
