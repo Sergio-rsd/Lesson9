@@ -53,6 +53,7 @@
                 android:id="@+id/interest_currency"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:textSize="15sp"
                 tools:text="Важность" />
 
@@ -65,7 +66,8 @@
                 android:id="@+id/data_stamp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textSize="14sp"
                 tools:text="дата" />
 
         </LinearLayout>

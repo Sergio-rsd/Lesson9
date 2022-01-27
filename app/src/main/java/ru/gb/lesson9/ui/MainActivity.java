@@ -114,8 +114,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void create(String title, String description, String interest) {
-        Note note = new Note(title, description, interest, "");
+    public void create(String title, String description, String interest, String dataPerformance) {
+        Note note = new Note(title, description, interest, dataPerformance);
         repository.create(note);
         adapter.setNotes(repository.getAll());
 
