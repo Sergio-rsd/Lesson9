@@ -120,4 +120,10 @@ public class MainActivity extends AppCompatActivity
         adapter.setNotes(repository.getAll());
 
     }
+
+    @Override
+    public void onBackPressed() {
+
+        super.onBackPressed();
+    }
 }
