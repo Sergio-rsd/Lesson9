@@ -25,6 +25,11 @@ public class NotesAdapter extends RecyclerView.Adapter<NoteHolder> {
         this.listener = listener;
     }
 
+    public void delete(List<Note> all, int position) {
+        this.notes = all;
+        notifyItemRemoved(position);
+    }
+
     public void setNotes(List<Note> notes) {
         this.notes = notes;
         notifyDataSetChanged();
@@ -62,8 +67,4 @@ public class NotesAdapter extends RecyclerView.Adapter<NoteHolder> {
         return notes.size();
     }
 
-    public void delete(List<Note> all, int position) {
-        this.notes = all;
-        notifyItemRemoved(position);
-    }
 }

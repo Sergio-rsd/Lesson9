@@ -5,6 +5,9 @@ import java.util.List;
 
 public class InMemoryRepoImpl implements Repo {
 
+    private ArrayList<Note> notes = new ArrayList<>();
+    private int counter = 0;
+
     // singleton для базы
     private static InMemoryRepoImpl repo;
 
@@ -35,8 +38,7 @@ public class InMemoryRepoImpl implements Repo {
         create(new Note("Title 16", "Description 16"));
     }
 
-    private ArrayList<Note> notes = new ArrayList<>();
-    private int counter = 0;
+
 
 
     @Override
