@@ -24,7 +24,7 @@ public class NoteHolder extends RecyclerView.ViewHolder implements PopupMenu.OnM
     private PopupMenu popupMenu;
     private PopupMenuClick listener;
 
-    //    public NoteHolder(@NonNull View itemView, NotesAdapter.OnNoteClickListener listener) {
+
     public NoteHolder(@NonNull View itemView, PopupMenuClick listener) {
         super(itemView);
         this.listener = listener;
@@ -37,8 +37,6 @@ public class NoteHolder extends RecyclerView.ViewHolder implements PopupMenu.OnM
         noteMenu = itemView.findViewById(R.id.note_menu);
         popupMenu = new PopupMenu(itemView.getContext(), noteMenu);
         popupMenu.inflate(R.menu.context);
-
-//        itemView.setOnClickListener(v -> listener.onNoteClick(note));
 
         noteMenu.setOnClickListener(v -> popupMenu.show());
         popupMenu.setOnMenuItemClickListener(this);

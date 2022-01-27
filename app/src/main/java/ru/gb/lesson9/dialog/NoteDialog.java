@@ -34,8 +34,7 @@ public class NoteDialog extends DialogFragment {
     private Note note;
     private String[] arrayInterest;
     private String selectSaved;
-    //    private String interest;
-    public static final String TAG = "happy";
+//    public static final String TAG = "happy";
     private String interest = "";
     private TextView currentDateTime;
     Calendar dataChoice = Calendar.getInstance();
@@ -68,17 +67,6 @@ public class NoteDialog extends DialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         Bundle args = getArguments();
         note = (Note) args.getSerializable(NOTE);
-
-/*
-        String title = "";
-        String description = "";
-
-        if (note != null) {
-            title = note.getTitle();
-            description = note.getDescription();
-
-        }
-*/
 
         View dialog = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_edit_note, null);
 
@@ -120,7 +108,6 @@ public class NoteDialog extends DialogFragment {
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     note.setInterest(arrayInterest[position]);
                     interest = note.getInterest();
-//                    Log.d(TAG, " position = [" + position + "], id = [" + id + "]");
                 }
 
                 @Override
