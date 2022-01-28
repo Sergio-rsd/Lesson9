@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,12 +18,16 @@ import ru.gb.lesson9.data.InMemoryRepoImpl;
 import ru.gb.lesson9.data.Note;
 import ru.gb.lesson9.data.PopupMenuClick;
 import ru.gb.lesson9.data.Repo;
+import ru.gb.lesson9.data.YesNoDialogController;
 import ru.gb.lesson9.dialog.NoteDialog;
+import ru.gb.lesson9.dialog.YesNoDialog;
 import ru.gb.lesson9.recycler.NoteHolder;
 import ru.gb.lesson9.recycler.NotesAdapter;
 
 public class MainActivity extends AppCompatActivity
-        implements PopupMenuClick, NoteDialog.NoteDialogController {
+        implements PopupMenuClick,
+        NoteDialog.NoteDialogController,
+        YesNoDialogController {
 
     private Repo repository = InMemoryRepoImpl.getInstance();
     Note note;
@@ -77,8 +82,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case R.id.main_create:
                 NoteDialog.getInstance(null).show(
                         getSupportFragmentManager(),
@@ -123,7 +127,16 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
+        showYesNoDialogFragment();
 
-        super.onBackPressed();
+    }
+
+    private void showYesNoDialogFragment() {
+        new YesNoDialog().show(getSupportFragmentManager(), null);
+    }
+
+    @Override
+    public void createAnswer() {
+        finish();
     }
 }
