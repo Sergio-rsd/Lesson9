@@ -1,4 +1,4 @@
-package ru.gb.lesson7;
+package ru.gb.lesson9;
 
 import org.junit.Test;
 

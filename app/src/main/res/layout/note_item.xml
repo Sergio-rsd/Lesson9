@@ -12,11 +12,7 @@
     android:focusable="true"
     app:cardCornerRadius="16dp"
     app:cardElevation="12dp">
-    <!--
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -50,13 +46,14 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="8dp"
-            android:layout_weight="1"
+            android:layout_weight="1.5"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/interest_currency"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:textSize="15sp"
                 tools:text="Важность" />
 
@@ -69,10 +66,18 @@
                 android:id="@+id/data_stamp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textSize="14sp"
                 tools:text="дата" />
 
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/note_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_baseline_more_vert_24" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

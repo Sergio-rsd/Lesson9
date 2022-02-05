@@ -1,4 +1,4 @@
-package ru.gb.lesson7.data;
+package ru.gb.lesson9.data;
 
 import java.io.Serializable;
 
@@ -17,6 +17,13 @@ public class Note implements Serializable {
 
     public Note(Integer id, String title, String description, String interest, String dataPerformance) {
         this.id = id;
+        this.title = title;
+        this.description = description;
+        this.interest = interest;
+        this.dataPerformance = dataPerformance;
+    }
+
+    public Note(String title, String description, String interest, String dataPerformance) {
         this.title = title;
         this.description = description;
         this.interest = interest;

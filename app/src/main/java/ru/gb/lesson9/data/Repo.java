@@ -1,4 +1,4 @@
-package ru.gb.lesson7.data;
+package ru.gb.lesson9.data;
 
 import java.util.List;
 

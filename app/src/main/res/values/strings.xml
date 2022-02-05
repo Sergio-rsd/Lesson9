@@ -1,5 +1,10 @@
 <resources>
-    <string name="app_name">Lesson7</string>
+    <string name="app_name">Lesson9</string>
     <string name="update_note">Update note</string>
     <string name="change_data">Change data</string>
+    <string name="create">Create</string>
+    <string name="modify">Modify</string>
+    <string name="delete">Delete</string>
+    <string name="new_description">New description</string>
+    <string name="new_title">New Title</string>
 </resources>
